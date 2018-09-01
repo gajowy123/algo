@@ -1,24 +1,22 @@
-def ryby(n, m, b):
-    f = []
-    w = 0
-    for i in range(b):
-        if m[i] == 1:
-            f.insert(0, n[i])
+def ryby(n, sizes, directions):
+    stack = []
+    result = 0
+    for i in range(directions):
+        if sizes[i] == 1:
+            stack.append(n[i])
         else:
-            if f:
-                o = r(f, n[i])
-                w += o
+            if stack:
+                result += eat_smaller(stack, n[i])
             else:
-                w += 1
-    w += len(f)
-    print(w)
-    return w
+                result += 1
+    result += len(stack)
+    return result
 
 
-def r(f, n):
+def eat_smaller(f, n):
     for i in f:
         if i < n:
-            f.pop(0)
+            f.pop()
         else:
             return 0
     return 1
