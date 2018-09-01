@@ -6,7 +6,7 @@ def ryby(n, m, b):
             f.insert(0, n[i])
         else:
             if f:
-                o, f = r(f, n[i])
+                o = r(f, n[i])
                 w += o
             else:
                 w += 1
@@ -16,13 +16,12 @@ def ryby(n, m, b):
 
 
 def r(f, n):
-    p = f
     for i in f:
         if i < n:
-            p.pop(0)
+            f.pop(0)
         else:
-            return 0, p
-    return 1, []
+            return 0
+    return 1
 
 
 assert ryby([4, 3, 2, 1, 5], [0, 1, 0, 0, 0], 5) == 2
